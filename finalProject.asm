@@ -100,7 +100,7 @@ MenuScrollLoop
 
     RET
 
-;***********************************SubDisplay********************************
+;***********************************Display********************************
 ; Description:
 ;     Clears the screen, prints the correct message if not
 ;     the first round, prints the remember header, then
@@ -187,14 +187,14 @@ DisplayScrollLoop
 
     RET
 
-;***********************************SubInput*********************************
+;***********************************Input*********************************
 ; Description:
 ;     Reads player keypresses one at a time, converts to
 ;     uppercase, strips ASCII offset and compares against
-;     the stored sequence. Jumps to SubWrong on mismatch.
+;     the stored sequence. Jumps to Wrong on mismatch.
 ;     On full correct sequence, grows length by one,
-;     checks for win condition and jumps to SubScore if so,
-;     otherwise returns to let GameLoop call SubDisplay again.
+;     checks for win condition and jumps to Score if so,
+;     otherwise returns to let GameLoop call Display again.
 ;
 ; Register Usage:
 ; R0 - input character / comparison
@@ -247,9 +247,9 @@ InputPostScroll
 
     RET
 
-;***********************************SubWin************************************
+;***********************************Win************************************
 ; Description:
-;     Prints the win message then falls through to SubScore
+;     Prints the win message then falls through to Score
 ;     to display levels completed before halting.
 ;
 ; Register Usage:
@@ -263,10 +263,10 @@ Win
     JSR Score
     HALT
 
-;***********************************SubWrong**********************************
+;***********************************Wrong**********************************
 ; Description:
 ;     Scrolls the screen, prints the fail message, reveals
-;     the correct sequence, then falls through to SubScore
+;     the correct sequence, then falls through to Score
 ;     to display levels completed before halting.
 ;
 ; Register Usage:
